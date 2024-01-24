@@ -13,6 +13,7 @@ import Input from "../Foms/Input";
 import LoginImg from "../assets/img_login.png";
 import Button from "../Foms/ButtonRegister";
 import useForm from "../Hooks/useForms";
+import GoogleLoginButton from '../Foms/GoogleLoginButton';
 
 const Login = () => {
   /*Show Password  */
@@ -50,6 +51,7 @@ const Login = () => {
             <Text fontSize={[null, "1.5rem", "3rem"]}>
               Entre no Orange Portfólio
             </Text>
+            <GoogleLoginButton />
             <Text color="#515255" pt="2rem" fontSize={[null, "1rem", "1.5rem"]}>
               Faça login com email
             </Text>
