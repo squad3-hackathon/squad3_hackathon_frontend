@@ -9,7 +9,7 @@ const types = {
   password: {
     regex: /^(?=.[A-Z])(?=.\d).{6,}$/,
     message:
-      "A senha precisa ter pelo menos 1 caracter maíusculo e 1 digito com no mínimo 6 caracteres.",
+      "A senha precisa ter pelo menos 1 caractere maiúsculo  e 1 digito com no mínimo 6 caracteres.",
   },
 };
 
