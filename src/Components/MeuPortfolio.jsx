@@ -1,5 +1,19 @@
 import React from 'react';
-import { ChakraProvider, Flex, Box, Image, Link, Wrap, WrapItem, Avatar, Text } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  Flex,
+  Box,
+  Image,
+  Link,
+  Wrap,
+  WrapItem,
+  Avatar,
+  Input,
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  Text
+} from "@chakra-ui/react";
 import LogoOrange from "../assets/logo_orange.png";
 import FotoPerfil from "../assets/foto_perfil.png";
 import Bellcon from "../assets/img_bellcon.svg";
@@ -27,20 +41,19 @@ const MeuPortifolio = () => {
           </Wrap>
         </Flex>
         <Image ml={3} src={Bellcon} alt="Bellcon" />
-        <Text
-          position="absolute"
-          top="290px"
-          left="60px"
-          color="#0B0C0D"
-          fontSize="20px"
-          fontFamily="Roboto"
-          opacity="0.6"
+            <FormControl
+            position="absolute"
+            top="290px"
+            left="60px"
+            color="#0B0C0D"
+            fontSize="20px"
+            fontFamily="Roboto"
+            opacity="0.6"
         >
-          Meus projetos
-        </Text>
+          <FormLabel>Meus projetos</FormLabel>
+          <Input type='text' width= "513px"/>
+        </FormControl>
       </Flex>
-
-      
     </ChakraProvider>
   );
 };

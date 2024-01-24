@@ -3,7 +3,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./Components/Login.jsx";
-import MeuPortfolio from "./Components/MeuPortfolio";
+import MeuPortifolio from "./Components/MeuPortfolio.jsx";
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
           {/* 
             a rota está  sendo representada como gatilho para um id ao integrar ao backend
           */}
-          <Route path="/portfolio/:id" element={<MeuPortfolio />} />
+          <Route path="/portfolio/:id" element={<MeuPortifolio />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>
