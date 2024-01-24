@@ -113,7 +113,7 @@ const Register = () => {
                     </button>
                   </InputRightElement>
                 </InputGroup>
-                <Button>Entrar</Button>
+                <Button>Cadastrar</Button>
               </form>
             </Box>
           </Box>
