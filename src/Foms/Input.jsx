@@ -10,11 +10,15 @@ const Input = ({
   onChange,
   error,
   legend,
+  isRequired,
 }) => {
   return (
     <>
       <fieldset className={styles.fieldset}>
-        <legend>{legend}</legend>
+        <legend>
+          {legend}
+          {isRequired && <span> * </span>}
+        </legend>
         <input
           id={name}
           name={name}

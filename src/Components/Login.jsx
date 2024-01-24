@@ -56,7 +56,7 @@ const Login = () => {
             justifyContent="center"
           >
             <Box w={{ base: "90vw", md: "38vw" }}>
-              <Text fontSize={[null, "1.5rem", "3rem"]}>
+              <Text fontSize={[null, "1.5rem", "3rem"]} textAlign="center">
                 Entre no Orange Portfólio
               </Text>
               <Text
