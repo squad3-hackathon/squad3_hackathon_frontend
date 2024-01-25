@@ -34,16 +34,16 @@ const MeuPortifolio = () => {
               Descobrir
             </Link>
           </Flex>
-          <Wrap ml={900} spacing="20px" justify="flex-end" align="center">
+          <Wrap ml={880} spacing="20px" justify="flex-end" align="center">
             <WrapItem>
-              <Avatar name='Luiza' src={FotoPerfil} />
+              <Avatar name='Camila Soares' src={FotoPerfil} />
             </WrapItem>
           </Wrap>
         </Flex>
-        <Image ml={3} src={Bellcon} alt="Bellcon" />
+        <Image ml={7} src={Bellcon} alt="Bellcon" />
             <FormControl
             position="absolute"
-            top="290px"
+            top="300px"
             left="60px"
             color="#0B0C0D"
             fontSize="20px"
@@ -51,9 +51,41 @@ const MeuPortifolio = () => {
             opacity="0.6"
         >
           <FormLabel>Meus projetos</FormLabel>
-          <Input type='text' width= "513px"/>
+          <Input type='text' width= "637px" height={"200px"}/>
         </FormControl>
+        <Wrap 
+        position="absolute"
+        top="165px"
+        left="620px"
+        align="center"
+        >
+            <WrapItem >
+              <Avatar name='Camila Soares' src={FotoPerfil} boxSize={100}/>
+            </WrapItem>
+          
+        </Wrap>
       </Flex>
+      <Text 
+      position="absolute"
+      top="160px"
+      left="760px"
+      fontFamily="Roboto"
+      fontSize="24px"
+      >
+      Camila Soares
+      </Text>
+      <Text 
+      position="absolute"
+      top="200px"
+      left="762px"
+      fontFamily="Roboto"
+      fontSize="16px"
+      opacity={0.5}
+      >
+      Brasil
+      </Text>
+      
+      
     </ChakraProvider>
   );
 };
