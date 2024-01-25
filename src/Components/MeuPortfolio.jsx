@@ -18,6 +18,7 @@ import {
 import LogoOrange from "../assets/logo_orange.png";
 import FotoPerfil from "../assets/foto_perfil.png";
 import Bellcon from "../assets/img_bellcon.svg";
+import UploadProject from '../assets/upload_project.svg';
 
 const MeuPortifolio = () => {
   return (
@@ -52,7 +53,7 @@ const MeuPortifolio = () => {
             opacity="0.6"
         >
           <FormLabel>Meus projetos</FormLabel>
-          <Input type='text' width= "637px" height={"50px"}/>
+          <Input type='text' width= "637px" height={"50px"} placeholder="Buscar tags"fontSize="16px"/>
         </FormControl>
         <Wrap 
         position="absolute"
@@ -85,71 +86,72 @@ const MeuPortifolio = () => {
       >
       Brasil
       </Text>
-
       <Button
       position="absolute"
       top="245px"
       left="762px"
-      bordeRadius= "4px"
-      bg= "rgba(0, 0, 0, 0.12)"
-      height={"40px"}
-      >
-        <Link href="#" color="var(--action-disabled, rgba(0, 0, 0, 0.38))" mx={3} fontSize={17} fontFamily="Roboto">
-          ADICIONAR PROJETO
-        </Link>
-      </Button>
+      borderRadius="4px"
+      bg="rgba(0, 0, 0, 0.12)"
+      height="40px"
+    >
+      <Link href="#" color="var(--action-disabled, rgba(0, 0, 0, 0.38))" mx={3} fontSize={17} fontFamily="Roboto">
+        ADICIONAR PROJETO
+      </Link>
+    </Button>
 
-      <Card
-  position="absolute"
-  top="400px"
-  left="60px"
-  width="389px"
-  height="258px"
-  borderRadius="4px"
-  bg="#E6E9F2"
->
-  <Flex
-    direction="column"
-    justify="center"
-    align="center"
-    height="100%"
-    marginTop={"50px"}
-  >
-    <Text
-      color="#303133"
-      fontFamily="Roboto"
-      fontSize="16px"
-      fontStyle="normal"
-      fontWeight="400"
-      lineHeight="16px"
-      letterSpacing="0.5px"
-      opacity="0.5"
+    <Card
+      position="absolute"
+      top="400px"
+      left="60px"
+      width="389px"
+      height="258px"
+      borderRadius="4px"
+      bg="#E6E9F2"
     >
-      Adicione seu primeiro projeto
-    </Text>
-    <Flex
-    >
-      <Text
-      color="#303133"
-      fontFamily="Roboto"
-      fontSize="14px"
-      fontStyle="normal"
-      fontWeight="400"
-      lineHeight="16px"
-      letterSpacing="0.5px"
-      opacity="0.5"
-      textAlign="right" // Use textAlign em vez de align
-      marginTop="22px"
+      <Flex
+        direction="column"
+        justify="center"
+        align="center"
+        height="100%"
       >
-      Compartilhe seu talento com milhares de pessoas
-      </Text>
-    </Flex>  
-  </Flex>
-</Card>
+        <Image src={UploadProject} alt="UploadProject" mb={5}/>
+        <Text
+          color="#303133"
+          fontFamily="Roboto"
+          fontSize="16px"
+          fontStyle="normal"
+          fontWeight="400"
+          lineHeight="16px"
+          letterSpacing="0.5px"
+          opacity="0.5"
+        >
+          Adicione seu primeiro projeto
+        </Text>
+        <Flex>
+          <Text
+            color="#303133"
+            fontFamily="Roboto"
+            fontSize="14px"
+            fontStyle="normal"
+            fontWeight="400"
+            lineHeight="16px"
+            letterSpacing="0.5px"
+            opacity="0.5"
+            textAlign="right"
+            marginTop="22px"
+          >
+            Compartilhe seu talento com milhares de pessoas
+          </Text>
+        </Flex>
+      </Flex>
+    </Card>
+
+
+      
 
       
       
-    </ChakraProvider>
+  </ChakraProvider>
   );
 };
 
