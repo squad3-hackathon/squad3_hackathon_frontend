@@ -10,11 +10,17 @@ const Input = ({
   onChange,
   error,
   legend,
+  isRequired,
 }) => {
   return (
     <>
-      <fieldset className={styles.fieldset}>
-        <legend>{legend}</legend>
+      <fieldset
+        className={`${styles.fieldset} ${error ? styles.errorInput : ""}`}
+      >
+        <legend>
+          {legend}
+          {isRequired && <span> * </span>}
+        </legend>
         <input
           id={name}
           name={name}
@@ -22,7 +28,7 @@ const Input = ({
           value={value}
           onBlur={onBlur}
           onChange={onChange}
-          className={styles.input}
+          className={`${styles.input} `}
         />
         {fieldset}
       </fieldset>

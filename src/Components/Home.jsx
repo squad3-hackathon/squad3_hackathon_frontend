@@ -20,7 +20,7 @@ import FotoPerfil from "../assets/foto_perfil.png";
 import Bellcon from "../assets/img_bellcon.svg";
 import UploadProject from '../assets/upload_project.svg';
 
-const MeuPortifolio = () => {
+const Home = () => {
   return (
     <ChakraProvider>
       <Flex p={4} bg='#113' color='white'>
@@ -155,4 +155,4 @@ const MeuPortifolio = () => {
   );
 };
 
-export default MeuPortifolio;
+export default Home;
