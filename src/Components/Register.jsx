@@ -15,25 +15,48 @@ import RegisterImg from "../assets/img_cadastro.png";
 import Button from "../Foms/ButtonRegister";
 import useForm from "../Hooks/useForms";
 import { Helmet } from "react-helmet";
+import AlertSuccess from "../Foms/AlertSucess";
+import AlertWarning from "../Foms/AlertWarning";
 
 const Register = () => {
-  /*Show Password  */
-  const [show, setShow] = React.useState(false);
+  /* Show Alerts */
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
+
+  /* Show Password */
+  const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
-  /*Submit Form */
-  const email = useForm();
-  const password = useForm();
+  /* Submit Form */
+  const email = useForm("email");
+  const password = useForm("password");
   const nome = useForm();
   const sobrenome = useForm();
 
-  async function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (email.validate() && password.validate()) {
-      userLogin(email.value, password.value);
+    const nomeValue = nome.value;
+    const sobrenomeValue = sobrenome.value;
+    const emailValue = email.value;
+    const passwordValue = password.value;
+
+    if (
+      nome.validate() &&
+      sobrenome.validate() &&
+      email.validate() &&
+      password.validate()
+    ) {
+      // userLogin(nomeValue, sobrenomeValue, emailValue, passwordValue);
+      console.log("tudo certo!");
+      setShowSuccess(true);
+      setShowWarning(false);
+    } else {
+      console.log("erro!");
+      setShowSuccess(false);
+      setShowWarning(true);
     }
-  }
+  };
 
   return (
     <>
@@ -50,6 +73,10 @@ const Register = () => {
           </Box>
         </section>
         <section>
+          <Box display="flex" justifyContent="center">
+            {showSuccess && <AlertSuccess />}
+            {showWarning && <AlertWarning />}
+          </Box>
           <Box
             w={{ base: "100vw", md: "60vw" }}
             h="100vh"
@@ -92,6 +119,7 @@ const Register = () => {
                   legend="Email address"
                   type="text"
                   name="email"
+                  errorText={email.error}
                   {...email}
                 />
                 <InputGroup display="flex" flexWrap="wrap" flexDir="row">
@@ -101,6 +129,7 @@ const Register = () => {
                     name="password"
                     type={show ? "text" : "password"}
                     placeholder="Enter password"
+                    errorText={password.error}
                     {...password}
                   />
                   <InputRightElement width="2rem" m="2.5rem 1rem">

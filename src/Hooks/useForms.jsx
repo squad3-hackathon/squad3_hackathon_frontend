@@ -7,32 +7,35 @@ const types = {
     message: "Preencha um email válido",
   },
   password: {
-    regex: /^(?=.[A-Z])(?=.\d).{6,}$/,
+    regex: /^(?=.*[A-Z])(?=.*\d).{6,}$/,
     message:
-      "A senha precisa ter pelo menos 1 caractere maiúsculo  e 1 digito com no mínimo 6 caracteres.",
+      "A senha precisa ter pelo menos 1 caractere maiúsculo e 1 dígito com no mínimo 6 caracteres.",
   },
 };
 
-const useForm = (type) => {
+const useCustomForm = (type) => {
   const [value, setValue] = React.useState("");
-  const [error, setError] = React.useState(null);
+  const [validation, setValidation] = React.useState({
+    error: null,
+    isValid: false,
+  });
 
   function validate(value) {
     if (type === false) return true;
     if (value.length === 0) {
-      setError("Preencha um valor");
+      setValidation({ error: "Informe corretamente o campo", isValid: false });
       return false;
     } else if (types[type] && !types[type].regex.test(value)) {
-      setError(types[type].message);
+      setValidation({ error: types[type].message, isValid: false });
       return false;
     } else {
-      setError(null);
+      setValidation({ error: null, isValid: true });
       return true;
     }
   }
 
   function onChange({ target }) {
-    if (error) validate(target.value);
+    if (validation.error) validate(target.value);
     setValue(target.value);
   }
 
@@ -40,10 +43,11 @@ const useForm = (type) => {
     value,
     setValue,
     onChange,
-    error,
+    error: validation.error,
+    isInvalid: !validation.isValid,
     validate: () => validate(value),
     onBlur: () => validate(value),
   };
 };
 
-export default useForm;
+export default useCustomForm;

@@ -18,20 +18,33 @@ import { Link as ChakraLink } from "@chakra-ui/react";
 
 const Login = () => {
   /*Show Password  */
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
   /*Submit Form */
-  const email = useForm();
-  const password = useForm();
+  const email = useForm("email");
+  const password = useForm("password");
 
-  async function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (email.validate() && password.validate()) {
-      userLogin(email.value, password.value);
+    const nomeValue = nome.value;
+    const sobrenomeValue = sobrenome.value;
+    const emailValue = email.value;
+    const passwordValue = password.value;
+
+    if (
+      nome.validate() &&
+      sobrenome.validate() &&
+      email.validate() &&
+      password.validate()
+    ) {
+      console.log("tudo certo!");
+      // userLogin(nomeValue, sobrenomeValue, emailValue, passwordValue);
+    } else {
+      console.log("erro!");
     }
-  }
+  };
 
   return (
     <>
@@ -72,6 +85,7 @@ const Login = () => {
                   legend="Email address"
                   type="text"
                   name="email"
+                  errorText={email.error}
                   {...email}
                 />
                 <InputGroup display="flex" flexWrap="wrap" flexDir="row">
@@ -81,6 +95,7 @@ const Login = () => {
                     name="password"
                     type={show ? "text" : "password"}
                     placeholder="Enter password"
+                    errorText={password.error}
                     {...password}
                   />
                   <InputRightElement width="2rem" m="2.5rem 1rem">

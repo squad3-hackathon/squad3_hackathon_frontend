@@ -27,6 +27,10 @@
 
 .error {
   color: #f31;
-  font-size: 0.85rem;
+  font-size: 12px;
   margin-top: 0.25rem;
+}
+
+.errorInput {
+  border-color: red;
 }
