@@ -241,6 +241,7 @@ const Home = () => {
                   fontFamily="Roboto"
                   fontStyle={"normal"}
                   lineHeight={"20px"}
+                  _hover={{ bg: "#CC4400" }}
                 >
                   SALVAR
                 </Button>
@@ -257,6 +258,7 @@ const Home = () => {
                   fontFamily="Roboto"
                   fontStyle={"normal"}
                   lineHeight={"20px"}
+                  _hover={{ bg: "#C2C4CC" }}
                 >
                   CANCELAR
                 </Button>
@@ -315,6 +317,7 @@ const Home = () => {
                   fontFamily="Roboto"
                   fontStyle={"normal"}
                   lineHeight={"20px"}
+                  _hover={{ bg: "#CC4400" }}
                 >
                   SALVAR
                 </Button>
@@ -331,6 +334,7 @@ const Home = () => {
                   fontFamily="Roboto"
                   fontStyle={"normal"}
                   lineHeight={"20px"}
+                  _hover={{ bg: "#C2C4CC" }}
                 >
                   CANCELAR
                 </Button>
