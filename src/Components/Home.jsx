@@ -19,6 +19,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
+  useToast,
 } from "@chakra-ui/react";
 import LogoOrange from "../assets/logo_orange.png";
 import FotoPerfil from "../assets/foto_perfil.png";
@@ -28,6 +29,8 @@ import UploadProject from '../assets/upload_project.svg';
 const Home = () => {
   const [isAddProjectModalOpen, setAddProjectModalOpen] = useState(false);
   const [isUploadProjectModalOpen, setUploadProjectModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null); // Estado para armazenar o arquivo selecionado
+  const toast = useToast(); // Configurar toast para exibir mensagens
 
   const openAddProjectModal = () => {
     setAddProjectModalOpen(true);
@@ -45,8 +48,31 @@ const Home = () => {
     setUploadProjectModalOpen(false);
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+  };
+
+  const handleSaveProject = () => {
+    // Lógica para salvar o projeto com o arquivo selecionado
+    // Aqui você pode enviar o arquivo para o seu servidor, por exemplo
+
+    // Exibir mensagem de sucesso
+    toast({
+      title: "Projeto Adicionado com Sucesso!",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+
+    // Fechar o modal e limpar o estado do arquivo selecionado
+    closeAddProjectModal();
+    setSelectedFile(null);
+  };
+
   return (
     <ChakraProvider>
+      {/* NavBar */}
       <Flex p={4} bg="#113" color="white">
         <Flex ml={30} align="center">
           <Box mr={100}>
@@ -76,6 +102,8 @@ const Home = () => {
           fontFamily="Roboto"
           opacity="0.6"
         >
+
+          {/* Corpo */}
           <FormLabel>Meus projetos</FormLabel>
           <Input type='text' width="637px" height={"50px"} placeholder="Buscar tags" fontSize="16px" />
         </FormControl>
@@ -90,7 +118,6 @@ const Home = () => {
           </WrapItem>
         </Wrap>
       </Flex>
-
       <Text
         position="absolute"
         top="160px"
@@ -100,7 +127,6 @@ const Home = () => {
       >
         Camila Soares
       </Text>
-
       <Text
         position="absolute"
         top="200px"
@@ -133,7 +159,6 @@ const Home = () => {
           ADICIONAR PROJETO
         </Link>
       </Button>
-
       <Link>
         <Card
           position="absolute"
@@ -185,9 +210,6 @@ const Home = () => {
           </Flex>
         </Card>
       </Link>
-
-
-
 
 
       {/* Modal para upload de arquivinhos no botão "Adicionar Arquivos" perto do perfil*/}
@@ -266,6 +288,7 @@ const Home = () => {
           </ModalBody>
         </ModalContent>
       </Modal>
+
       {/* Modal para upload de arquivinhos no Card*/}  
       <Modal 
       isOpen={isUploadProjectModalOpen} 
@@ -281,34 +304,46 @@ const Home = () => {
           lineHeight= "24px"
           >Adicionar Projeto</ModalHeader>
           <ModalBody width="100%">
-            <Text mt={-2}>
-              Selecione o conteúdo que você deseja fazer upload
-              <Card
-              display={"flex"}
-              bg="#E6E9F2"
-              width= {"389px"}
-              height= {"304px"}
-              justifyContent= {"center"}
-              alignItems= {"center"}
-              padding={"91px 59px 91px 60px"}
-              mt={3}
-              >
-                <Image src={UploadProject} alt="UploadProject" />
-                <Text 
-                mt={2}
-                color="#303133"
-                fontFamily= "Roboto"
-                fontSize= "14px"
-                fontStyle= "normal"
-                opacity={"0.6"}
-                >Compartilhe seu talento com milhares de pessoas</Text>
-              </Card>
+          <Text mt={-2}>
+                Selecione o conteúdo que você deseja fazer upload
+                <label htmlFor="file-upload" style={{ cursor: "pointer" }}>
+                  <Card
+                    display={"flex"}
+                    bg="#E6E9F2"
+                    width={"389px"}
+                    height={"304px"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    padding={"91px 59px 91px 60px"}
+                    mt={3}
+                  >
+                    <input
+                      type="file"
+                      id="file-upload"
+                      accept=".pdf, .doc, .docx"
+                      style={{ display: "none" }}
+                      onChange={handleFileChange}
+                    />
+                    <Image src={UploadProject} alt="UploadProject" />
+                    <Text
+                      mt={2}
+                      color="#303133"
+                      fontFamily="Roboto"
+                      fontSize="14px"
+                      fontStyle="normal"
+                      opacity={"0.6"}
+                    >
+                      Compartilhe seu talento com milhares de pessoas
+                    </Text>
+                  </Card>
+                </label>
               </Text>
+
               <Text mt={5}>Visualizar publicação</Text>
               <Flex justify="space-between" display={"flex"} mt={4}>
                 <Button 
                   colorScheme="teal" 
-                  onClick={closeUploadProjectModal}
+                  onClick={handleFileChange}
                   bg="#F52"
                   borderRadius="4px"
                   padding="8px 27px"
@@ -345,10 +380,5 @@ const Home = () => {
     </ChakraProvider>
   );
 };
-
-
-
-
-
 
 export default Home;
