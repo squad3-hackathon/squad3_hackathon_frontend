@@ -4,7 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
-import Home from "./Components/Home";
+import Home from "./Components/Home/Home";
 
 
 const App = () => {
