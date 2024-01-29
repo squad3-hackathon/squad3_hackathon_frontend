@@ -28,11 +28,10 @@ const HomeDescobrir = () => {
               <Box mr={100}>
                 <Image src={LogoOrange} alt="Logo" />
               </Box>
-              <Flex align="center">
+              <Flex align="center" width="20rem">
                 <Link
                   href="#"
                   color="#FCFDFF"
-                  mx={3}
                   fontSize={20}
                   fontFamily="Roboto"
                 >
@@ -60,7 +59,7 @@ const HomeDescobrir = () => {
         <article>
           <Box
             position="relative"
-            mt="12rem"
+            mt="8rem"
             alignItems="center"
             display="flex"
             w="90vw"
@@ -69,8 +68,9 @@ const HomeDescobrir = () => {
           >
             <Text
               textAlign="center"
-              m="2rem 12rem 2rem 24rem"
+              m={{ base: "-36% 0% 0% 10%", md: "2% 12% 2% 24%" }}
               fontSize={{ base: "24px", md: "34px" }}
+              lineHeight={{ base: "24px", md: "34px" }}
             >
               Junte-se à comunidade de inovação, inspiração e descobertas,
               transformando experiências em conexões inesquecíveis
@@ -79,12 +79,13 @@ const HomeDescobrir = () => {
 
           <section>
             {/* Fazer um map com os cards quando puxar da API */}
-            <Box w="50%" m="7rem 0 2.5rem 2rem">
+            <Box w={{ base: "85vw", md: "50%" }} m="7rem 0 2.5rem 2rem">
               <Input
                 id="Buscar"
                 legend="Buscar tags"
                 type="text"
-                name="email"
+                name="buscar tags"
+                placeholder="Buscar tags"
               />
             </Box>
             <Box
@@ -94,22 +95,46 @@ const HomeDescobrir = () => {
             >
               <Grid
                 ml="2rem"
+                mr="2rem"
                 templateRows="repeat(2, 1fr)"
                 templateColumns="repeat(auto-fit, minmax(300px, 1fr))"
                 gap={8}
-                borderRadius="4px"
               >
                 <GridItem
                   colSpan={1}
                   w="325px"
-                  borderRadius="4px"
                   h="290px"
                   bg="blue.500"
+                  borderRadius="4px"
                 />
-                <GridItem w="325px" h="290px" colSpan={1} bg="papayawhip" />
-                <GridItem w="325px" h="290px" colSpan={1} bg="papayawhip" />
-                <GridItem w="325px" h="290px" colSpan={1} bg="blue.500" />
-                <GridItem w="325px" h="290px" colSpan={1} bg="blue.500" />
+                <GridItem
+                  w="325px"
+                  h="290px"
+                  colSpan={1}
+                  bg="papayawhip"
+                  borderRadius="4px"
+                />
+                <GridItem
+                  w="325px"
+                  h="290px"
+                  colSpan={1}
+                  bg="papayawhip"
+                  borderRadius="4px"
+                />
+                <GridItem
+                  w="325px"
+                  h="290px"
+                  colSpan={1}
+                  bg="blue.500"
+                  borderRadius="4px"
+                />
+                <GridItem
+                  w="325px"
+                  h="290px"
+                  colSpan={1}
+                  bg="blue.500"
+                  borderRadius="4px"
+                />
               </Grid>
             </Box>
           </section>

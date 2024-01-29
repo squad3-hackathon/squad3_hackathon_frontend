@@ -10,6 +10,7 @@ const Input = ({
   onChange,
   error,
   legend,
+  placeholder,
 }) => {
   return (
     <>
@@ -21,6 +22,7 @@ const Input = ({
           type={type}
           value={value}
           onBlur={onBlur}
+          placeholder={placeholder}
           onChange={onChange}
           className={styles.input}
         />
