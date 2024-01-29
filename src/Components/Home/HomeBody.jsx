@@ -21,9 +21,9 @@ import HomeModal from "./HomeModal";
 const HomeBody = () => {
   const [isAddProjectModalOpen, setAddProjectModalOpen] = useState(false);
   const [isUploadProjectModalOpen, setUploadProjectModalOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
   const [imagemEnviada, setImagemEnviada] = useState(null);
   const [mostrarImagemNoCard, setMostrarImagemNoCard] = useState(false);
+
 
   const toast = useToast();
 
@@ -33,7 +33,6 @@ const HomeBody = () => {
 
   const closeAddProjectModal = () => {
     setAddProjectModalOpen(false);
-    setImagemEnviada(null);
     setUploadProjectModalOpen(false);
   };
 
@@ -42,14 +41,13 @@ const HomeBody = () => {
   };
 
   const closeUploadProjectModal = () => {
-    setImagemEnviada(null);
     setUploadProjectModalOpen(false);
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+  
+    if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
       reader.onload = (event) => {
         const imageUrl = event.target.result;
@@ -71,9 +69,7 @@ const HomeBody = () => {
       return;
     }
 
-    // Lógica para salvar o projeto com a imagem enviada
-    // ...
-
+  
     toast({
       title: "Projeto Adicionado com Sucesso!",
       status: "success",
@@ -82,9 +78,7 @@ const HomeBody = () => {
       position: "top",
     });
 
-    // Fechar o modal e limpar o estado
     closeAddProjectModal();
-    setImagemEnviada(null);
     setMostrarImagemNoCard(true);
   };
     return (
@@ -153,60 +147,68 @@ const HomeBody = () => {
         </Link>
       </Button>
       <Link>
-        <Card
-          position="absolute"
-          top="400px"
-          left="60px"
-          width="389px"
-          height="258px"
-          borderRadius="4px"
-          bg="#E6E9F2"
-          cursor="pointer"
-          onClick={openUploadProjectModal}
-          _hover={{ bg: "#C2C4CC" }}
-        >
-          <Flex
-            direction="column"
-            justify="center"
-            align="center"
-            height="100%"
-          >
-            {mostrarImagemNoCard && (
-              <Image src={imagemEnviada} alt="ProjetoImagemsaf" mb={5} />
-            )}
-            {!mostrarImagemNoCard && (
-              <Image src={UploadProject} alt="UploadProject" mb={5} />
-            )}
-            <Text
-              color="#303133"
-              fontFamily="Roboto"
-              fontSize="16px"
-              fontStyle="normal"
-              fontWeight="400"
-              lineHeight="16px"
-              letterSpacing="0.5px"
-              opacity="0.5"
-            >
-              Adicione seu primeiro projeto
-            </Text>
-            <Flex>
-              <Text
-                color="#303133"
-                fontFamily="Roboto"
-                fontSize="14px"
-                fontStyle="normal"
-                fontWeight="400"
-                lineHeight="16px"
-                letterSpacing="0.5px"
-                opacity="0.5"
-                textAlign="right"
-                marginTop="22px"
-              >
-                Compartilhe seu talento com milhares de pessoas
-              </Text>
-            </Flex>
-          </Flex>
-        </Card>
+          {mostrarImagemNoCard && imagemEnviada ? (
+                  <Image 
+                  src={imagemEnviada}
+                  position="absolute"
+                  top="400px"
+                  left="60px"
+                  width="389px"
+                  height="258px"
+                  borderRadius="4px"
+                  />
+                ) : (
+                  <Card
+                  position="absolute"
+                  top="400px"
+                  left="60px"
+                  width="389px"
+                  height="258px"
+                  borderRadius="4px"
+                  bg="#E6E9F2"
+                  cursor="pointer"
+                  onClick={openUploadProjectModal}
+                  _hover={{ bg: "#C2C4CC" }}
+                >
+                  <Flex
+                    direction="column"
+                    justify="center"
+                    align="center"
+                    height="100%"
+                  >
+                    <Image src={UploadProject} alt="UploadProject" />
+                    <Text
+                      color="#303133"
+                      fontFamily="Roboto"
+                      fontSize="16px"
+                      fontStyle="normal"
+                      fontWeight="400"
+                      lineHeight="16px"
+                      letterSpacing="0.5px"
+                      opacity="0.5"
+                      mt={2}
+                    >
+                      Adicione seu primeiro projeto
+                    </Text>
+                    <Flex>
+                      <Text
+                        color="#303133"
+                        fontFamily="Roboto"
+                        fontSize="14px"
+                        fontStyle="normal"
+                        fontWeight="400"
+                        lineHeight="16px"
+                        letterSpacing="0.5px"
+                        opacity="0.5"
+                        textAlign="right"
+                        marginTop="22px"
+                      >
+                        Compartilhe seu talento com milhares de pessoas
+                      </Text>
+                    </Flex>
+                  </Flex>
+                </Card>
+              )}      
       </Link>
       <HomeModal
         isAddProjectModalOpen={isAddProjectModalOpen}

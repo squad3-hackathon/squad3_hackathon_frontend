@@ -1,6 +1,7 @@
 import React from "react";
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, Text, Card, Image, Flex, Button, Input} from "@chakra-ui/react";  // Import Chakra UI components
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, Text, Card, Image, Flex, Button, Input, Link} from "@chakra-ui/react";  // Import Chakra UI components
 import UploadProject from "../../assets/upload_project.svg";
+
 const HomeModal = ({
   isAddProjectModalOpen,
   closeAddProjectModal,
@@ -8,7 +9,7 @@ const HomeModal = ({
   closeUploadProjectModal,
   handleSaveProject,
   imagemEnviada,
-  handleFileChange
+  handleFileChange,
 }) => {
   return (
     <>
@@ -130,7 +131,7 @@ const HomeModal = ({
                   <Input
                     type="file"
                     id="file-upload"
-                    accept=".pdf, .doc, .docx, image/*"
+                    accept="image/*"
                     style={{ display: "none" }}
                     onChange={handleFileChange}
                   />
