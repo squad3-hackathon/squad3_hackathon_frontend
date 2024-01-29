@@ -6,12 +6,12 @@ const HomeModal = ({
   closeAddProjectModal,
   isUploadProjectModalOpen,
   closeUploadProjectModal,
-  handleFileChange
+  handleFileChange,
+  handleSaveProject,
 }) => {
-
   return (
     <>
-    {/* Modal para upload de arquivinhos no botão "Adicionar Arquivos" perto do perfil*/}
+    {/* modal para upload de arquivinhos no botão "Adicionar Arquivos" perto do perfil*/}
     <Modal 
       isOpen={isAddProjectModalOpen} 
       onClose={closeAddProjectModal}>

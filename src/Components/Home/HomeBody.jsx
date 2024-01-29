@@ -20,47 +20,43 @@ import HomeModal from "./HomeModal";
 
 const HomeBody = () => {
     const [isAddProjectModalOpen, setAddProjectModalOpen] = useState(false);
-  const [isUploadProjectModalOpen, setUploadProjectModalOpen] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null); // Estado para armazenar o arquivo selecionado
-  const toast = useToast(); // Configurar toast para exibir mensagens
+    const [isUploadProjectModalOpen, setUploadProjectModalOpen] = useState(false);
+    const [selectedFile, setSelectedFile] = useState(null); // Estado para armazenar o arquivo selecionado
+    const toast = useToast();
+    const openAddProjectModal = () => {
+      setAddProjectModalOpen(true);
+    };
 
-  const openAddProjectModal = () => {
-    setAddProjectModalOpen(true);
-  };
+    const closeAddProjectModal = () => {
+      setAddProjectModalOpen(false);
+    };
 
-  const closeAddProjectModal = () => {
-    setAddProjectModalOpen(false);
-  };
+    const openUploadProjectModal = () => {
+      setUploadProjectModalOpen(true);
+    };
 
-  const openUploadProjectModal = () => {
-    setUploadProjectModalOpen(true);
-  };
+    const closeUploadProjectModal = () => {
+      setUploadProjectModalOpen(false);
+    };
 
-  const closeUploadProjectModal = () => {
-    setUploadProjectModalOpen(false);
-  };
+    const handleFileChange = (event) => {
+      const file = event.target.files[0];
+      setSelectedFile(file);
+    };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
-  };
+    const handleSaveProject = () => {
+  
+      toast({
+        title: "Projeto Adicionado com Sucesso!",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
 
-  const handleSaveProject = () => {
-    // Lógica para salvar o projeto com o arquivo selecionado
-    // Aqui você pode enviar o arquivo para o seu servidor, por exemplo
-
-    // Exibir mensagem de sucesso
-    toast({
-      title: "Projeto Adicionado com Sucesso!",
-      status: "success",
-      duration: 5000,
-      isClosable: true,
-    });
-
-    // Fechar o modal e limpar o estado do arquivo selecionado
-    closeAddProjectModal();
-    setSelectedFile(null);
-  };
+  
+      closeAddProjectModal();
+      setSelectedFile(null);
+    };
 
     return (
     <>
@@ -73,7 +69,7 @@ const HomeBody = () => {
           fontFamily="Roboto"
           opacity="0.6"
         >
-          {/* Corpo */}
+          {/* corpinho */}
           <FormLabel>Meus projetos</FormLabel>
           <Input type='text' width="637px" height={"50px"} placeholder="Buscar tags" fontSize="16px" />
         </FormControl>
@@ -178,7 +174,14 @@ const HomeBody = () => {
           </Flex>
         </Card>
       </Link>
-      <HomeModal />
+      <HomeModal
+        isAddProjectModalOpen={isAddProjectModalOpen}
+        closeAddProjectModal={closeAddProjectModal}
+        isUploadProjectModalOpen={isUploadProjectModalOpen}
+        closeUploadProjectModal={closeUploadProjectModal}
+        handleFileChange={handleFileChange}
+        handleSaveProject={handleSaveProject}
+      />
       
     </>
   );
