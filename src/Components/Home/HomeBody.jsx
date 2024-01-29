@@ -19,45 +19,74 @@ import FotoPerfil from "../../assets/foto_perfil.png";
 import HomeModal from "./HomeModal";
 
 const HomeBody = () => {
-    const [isAddProjectModalOpen, setAddProjectModalOpen] = useState(false);
-    const [isUploadProjectModalOpen, setUploadProjectModalOpen] = useState(false);
-    const [selectedFile, setSelectedFile] = useState(null); // Estado para armazenar o arquivo selecionado
-    const toast = useToast();
-    const openAddProjectModal = () => {
-      setAddProjectModalOpen(true);
-    };
+  const [isAddProjectModalOpen, setAddProjectModalOpen] = useState(false);
+  const [isUploadProjectModalOpen, setUploadProjectModalOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [imagemEnviada, setImagemEnviada] = useState(null);
+  const [mostrarImagemNoCard, setMostrarImagemNoCard] = useState(false);
 
-    const closeAddProjectModal = () => {
-      setAddProjectModalOpen(false);
-    };
+  const toast = useToast();
 
-    const openUploadProjectModal = () => {
-      setUploadProjectModalOpen(true);
-    };
+  const openAddProjectModal = () => {
+    setAddProjectModalOpen(true);
+  };
 
-    const closeUploadProjectModal = () => {
-      setUploadProjectModalOpen(false);
-    };
+  const closeAddProjectModal = () => {
+    setAddProjectModalOpen(false);
+    setImagemEnviada(null);
+    setUploadProjectModalOpen(false);
+  };
 
-    const handleFileChange = (event) => {
-      const file = event.target.files[0];
-      setSelectedFile(file);
-    };
+  const openUploadProjectModal = () => {
+    setUploadProjectModalOpen(true);
+  };
 
-    const handleSaveProject = () => {
-  
+  const closeUploadProjectModal = () => {
+    setImagemEnviada(null);
+    setUploadProjectModalOpen(false);
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const imageUrl = event.target.result;
+        setImagemEnviada(imageUrl);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSaveProject = () => {
+    if (!imagemEnviada) {
       toast({
-        title: "Projeto Adicionado com Sucesso!",
-        status: "success",
+        title: "Selecione um arquivo antes de salvar.",
+        status: "error",
         duration: 5000,
         isClosable: true,
+        position: "top",
       });
+      return;
+    }
 
-  
-      closeAddProjectModal();
-      setSelectedFile(null);
-    };
+    // Lógica para salvar o projeto com a imagem enviada
+    // ...
 
+    toast({
+      title: "Projeto Adicionado com Sucesso!",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+      position: "top",
+    });
+
+    // Fechar o modal e limpar o estado
+    closeAddProjectModal();
+    setImagemEnviada(null);
+    setMostrarImagemNoCard(true);
+  };
     return (
     <>
      <FormControl
@@ -142,7 +171,12 @@ const HomeBody = () => {
             align="center"
             height="100%"
           >
-            <Image src={UploadProject} alt="UploadProject" mb={5} />
+            {mostrarImagemNoCard && (
+              <Image src={imagemEnviada} alt="ProjetoImagemsaf" mb={5} />
+            )}
+            {!mostrarImagemNoCard && (
+              <Image src={UploadProject} alt="UploadProject" mb={5} />
+            )}
             <Text
               color="#303133"
               fontFamily="Roboto"
@@ -181,6 +215,9 @@ const HomeBody = () => {
         closeUploadProjectModal={closeUploadProjectModal}
         handleFileChange={handleFileChange}
         handleSaveProject={handleSaveProject}
+        imagemEnviada={imagemEnviada}
+        mostrarImagemNoCard={mostrarImagemNoCard}
+        setMostrarImagemNoCard={setMostrarImagemNoCard}
       />
       
     </>

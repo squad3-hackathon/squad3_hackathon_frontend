@@ -1,13 +1,14 @@
 import React from "react";
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, Text, Card, Image, Flex, Button } from "@chakra-ui/react";  // Import Chakra UI components
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, Text, Card, Image, Flex, Button, Input} from "@chakra-ui/react";  // Import Chakra UI components
 import UploadProject from "../../assets/upload_project.svg";
 const HomeModal = ({
   isAddProjectModalOpen,
   closeAddProjectModal,
   isUploadProjectModalOpen,
   closeUploadProjectModal,
-  handleFileChange,
   handleSaveProject,
+  imagemEnviada,
+  handleFileChange
 }) => {
   return (
     <>
@@ -106,43 +107,54 @@ const HomeModal = ({
           <Text mt={-2}>
                 Selecione o conteúdo que você deseja fazer upload
                 <label htmlFor="file-upload" style={{ cursor: "pointer" }}>
-                  <Card
-                    display={"flex"}
-                    bg="#E6E9F2"
-                    width={"389px"}
-                    height={"304px"}
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    padding={"91px 59px 91px 60px"}
-                    mt={3}
+              {imagemEnviada ? (
+                <Image
+                  src={imagemEnviada}
+                  alt="Preview da Imagem"
+                  display={"flex"}
+                  width={"389px"}
+                  height={"304px"}
+                  right={"15vh"}
+                  mt={3}
+                />
+              ) : (
+                <Card
+                  display={"flex"}
+                  bg="#E6E9F2"
+                  width={"389px"}
+                  height={"304px"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  mt={3}
+                >
+                  <Input
+                    type="file"
+                    id="file-upload"
+                    accept=".pdf, .doc, .docx, image/*"
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                  />
+                  <Image src={UploadProject} alt="UploadProject" />
+                  <Text
+                    mt={2}
+                    color="#303133"
+                    fontFamily="Roboto"
+                    fontSize="14px"
+                    fontStyle="normal"
+                    opacity={"0.6"}
                   >
-                    <input
-                      type="file"
-                      id="file-upload"
-                      accept=".pdf, .doc, .docx"
-                      style={{ display: "none" }}
-                      onChange={handleFileChange}
-                    />
-                    <Image src={UploadProject} alt="UploadProject" />
-                    <Text
-                      mt={2}
-                      color="#303133"
-                      fontFamily="Roboto"
-                      fontSize="14px"
-                      fontStyle="normal"
-                      opacity={"0.6"}
-                    >
-                      Compartilhe seu talento com milhares de pessoas
-                    </Text>
-                  </Card>
-                </label>
+                    Compartilhe seu talento com milhares de pessoas
+                  </Text>
+                </Card>
+              )}
+            </label>
               </Text>
 
               <Text mt={5}>Visualizar publicação</Text>
               <Flex justify="space-between" display={"flex"} mt={4}>
                 <Button 
                   colorScheme="teal" 
-                  onClick={handleFileChange}
+                  onClick={handleSaveProject}
                   bg="#F52"
                   borderRadius="4px"
                   padding="8px 27px"
