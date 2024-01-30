@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, Text, Card, Image, Flex, Button, Input, Link} from "@chakra-ui/react";  // Import Chakra UI components
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, Text, Card, Image, Flex, Button, Input, Link, FormControl, FormLabel, Stack} from "@chakra-ui/react";  // Import Chakra UI components
 import UploadProject from "../../assets/upload_project.svg";
 
 const HomeModal = ({
@@ -150,6 +150,21 @@ const HomeModal = ({
               )}
             </label>
               </Text>
+              <Stack
+              position="absolute"
+              width="424px"
+              height={"500px"}
+              left={"430px"}
+              top={"61px"}
+              borderRadius={"4px"}
+              >
+              
+                <Input className="titulo" type='text' placeholder="Título"></Input>
+                <Input className="tags" type='text' placeholder="Tags" mt={3}></Input>
+                <Input className="link" type='text' placeholder="Link" mt={3}></Input>
+                <Input className="descricao" type='text' placeholder="Descrição" mt={3} height={"157px"} ></Input>
+              </Stack>
+              
 
               <Text mt={5}>Visualizar publicação</Text>
               <Flex justify="space-between" display={"flex"} mt={4}>
