@@ -18,8 +18,9 @@ const HomeModal = ({
   setLinkProjeto,
   descricaoProjeto,
   setDescricaoProjeto,
-  inputsInvalidos,
+  inputsInvalidos
 }) => {
+  
   return (
     <>
     {/* modal para upload de arquivinhos no botão "Adicionar Arquivos" perto do perfil*/}
@@ -180,10 +181,16 @@ const HomeModal = ({
                 _hover={{ borderColor: "#515255" }}
                 _focus={{ borderColor: "#2348B1" }}
                 _disabled={{ borderColor: "#0000003B", color: "#0000003B", opacity: "0.8" }}
-                value={tagsProjeto} onChange={(e) => setTagsProjeto(e.target.value)}
+                value={tagsProjeto} 
+                onChange={(e) => {
+                  setTagsProjeto(e.target.value);
+                }}
                 isInvalid={inputsInvalidos.tagsProjeto}
                 required
                 ></Input>
+
+
+
                 <Input className="link" type='text' placeholder="Link" mt={3}
                 _hover={{ borderColor: "#515255" }}
                 _focus={{ borderColor: "#2348B1" }}

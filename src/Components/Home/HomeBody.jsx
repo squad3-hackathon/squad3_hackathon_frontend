@@ -17,6 +17,8 @@ import {
 import UploadProject from "../../assets/upload_project.svg";
 import FotoPerfil from "../../assets/foto_perfil.png";
 import HomeModal from "./HomeModal";
+import UserData from "./UserData";
+
 
 const HomeBody = () => {
   const [isAddProjectModalOpen, setAddProjectModalOpen] = useState(false);
@@ -27,15 +29,17 @@ const HomeBody = () => {
   const [tagsProjeto, setTagsProjeto] = useState('');
   const [linkProjeto, setLinkProjeto] = useState('');
   const [descricaoProjeto, setDescricaoProjeto] = useState('');
+  const [tags, setTags] = useState([]);
   const [inputsInvalidos, setInputsInvalidos] = useState({
     tituloProjeto: false,
     tagsProjeto: false,
     linkProjeto: false,
     descricaoProjeto: false,
   });
+  const [novasTags, setNovasTags] = useState([]);
 
   const toast = useToast();
-
+  
   const openAddProjectModal = () => {
     setAddProjectModalOpen(true);
   };
@@ -58,7 +62,10 @@ const HomeBody = () => {
 
   };
 
-  
+  const handleTagsChange = (e) => {
+    const tagsInput = e.target.value.split(",");
+    setTags(tagsInput);
+  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -122,13 +129,16 @@ const HomeBody = () => {
       duration: 5000,
       isClosable: true,
       position: "top",
+      
     });
 
     closeAddProjectModal();
     setMostrarImagemNoCard(true);
   };
+
     return (
     <>
+    {/* corpinho */}
      <FormControl
           position="absolute"
           top="300px"
@@ -138,7 +148,6 @@ const HomeBody = () => {
           fontFamily="Roboto"
           opacity="0.6"
         >
-          {/* corpinho */}
           <FormLabel>Meus projetos</FormLabel>
           <Input type='text' width="637px" height={"50px"} placeholder="Buscar tags" fontSize="16px" />
         </FormControl>
@@ -204,6 +213,20 @@ const HomeBody = () => {
                     height="258px"
                     borderRadius="4px"
                     />
+                    <Wrap
+                    position="absolute"
+                    top="670px"
+                    left="60px"
+                  >
+                    <WrapItem >
+                      <Avatar name='Camila Soares' src={FotoPerfil} boxSize={8} />
+                    </WrapItem>
+                  </Wrap>
+                  <Text
+                  >
+                  <UserData />
+                </Text>
+                   
                   </>
                 ) : (
                   <Card
@@ -277,6 +300,7 @@ const HomeBody = () => {
         descricaoProjeto={descricaoProjeto}
         setDescricaoProjeto={setDescricaoProjeto}
         inputsInvalidos={inputsInvalidos}
+        handleTagsChange={handleTagsChange}
 
       />
       
