@@ -12,50 +12,24 @@ import {
   Grid,
   GridItem,
 } from "@chakra-ui/react";
-import LogoOrange from "../assets/logo_orange.png";
-import FotoPerfil from "../assets/foto_perfil.png";
 import Input from "../Foms/Input";
-import Bellcon from "../assets/img_bellcon.svg";
 import CardsModal from "../Foms/CardsModal";
+import { Helmet } from "react-helmet";
+import Navbar from "../Foms/Navbar";
 
 const HomeDescobrir = () => {
   return (
     <>
       <ChakraProvider>
-        <header>{/* colocar a biblioteca de heder */}</header>
+        <header>
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>Orange - Descobrir</title>
+            <link rel="canonical" href="http://mysite.com/example" />
+          </Helmet>
+        </header>
         <nav>
-          <Flex p={4} bg="#113" color="white">
-            <Flex ml={30} align="center">
-              <Box mr={100}>
-                <Image src={LogoOrange} alt="Logo" />
-              </Box>
-              <Flex align="center" width="20rem">
-                <Link
-                  href="#"
-                  color="#FCFDFF"
-                  fontSize={20}
-                  fontFamily="Roboto"
-                >
-                  Meus projetos
-                </Link>
-                <Link
-                  href="#"
-                  color="white"
-                  mx={3}
-                  fontSize={20}
-                  fontFamily="Roboto"
-                >
-                  Descobrir
-                </Link>
-              </Flex>
-              <Wrap ml={880} spacing="20px" justify="flex-end" align="center">
-                <WrapItem>
-                  <Avatar name="Camila Soares" src={FotoPerfil} />
-                </WrapItem>
-              </Wrap>
-            </Flex>
-            <Image ml={7} src={Bellcon} alt="Bellcon" />
-          </Flex>
+          <Navbar />
         </nav>
         <article>
           <Box
@@ -80,7 +54,6 @@ const HomeDescobrir = () => {
           </Box>
 
           <section>
-            {/* Fazer um map com os cards quando puxar da API */}
             <Box
               w={{ base: "85vw", md: "50%" }}
               m={{ base: "-3rem 0 2.5rem 2rem", md: "7rem 0 2.5rem 2rem" }}
