@@ -1,8 +1,10 @@
 import {
   Box,
+  Link,
   Grid,
   Text,
   Modal,
+  Flex,
   Image,
   Button,
   GridItem,
@@ -13,14 +15,19 @@ import {
   ModalContent,
   useDisclosure,
   ModalCloseButton,
-  Flex,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import Data from "../Data";
 import styles from "./CardsButton.module.css";
 
 const CardsModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [activeItem, setActiveItem] = useState(null);
+
+  const openModal = (item) => {
+    setActiveItem(item);
+    onOpen();
+  };
 
   return (
     <>
@@ -35,21 +42,21 @@ const CardsModal = () => {
           {Data.map((item, index) => (
             <GridItem key={index} colSpan={1} borderRadius="4px">
               <Button
-                onClick={() => onOpen(index)}
+                onClick={() => openModal(item)}
                 p={0}
                 className={styles.cardButton}
               >
                 <Flex className={styles.cardButton}>
                   <Image
-                    src={` ${"/src/assets/"}` + item.ImgCard + `${".png"}`}
+                    src={`/src/assets/${item.ImgCard}.png`}
                     w="100%"
                     h="90%"
-                    alt=" Imagem card"
+                    alt="Imagem card"
                   />
 
                   <Box w="150px" h="10" display="flex" alignItems="center">
                     <Image
-                      src={` ${"/src/assets/"}` + item.UserImg + `${".svg"}`}
+                      src={`/src/assets/${item.UserImg}.svg`}
                       w="24px"
                       h="24px"
                       borderRadius={100}
@@ -63,39 +70,74 @@ const CardsModal = () => {
             </GridItem>
           ))}
         </Grid>
-
-        {Data.map((element, index) => (
-          <Modal key={index} isOpen={isOpen} onClose={isOpen}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>
-                <Flex justifyContent="center" width="100%">
+        <Modal isOpen={isOpen} onClose={onClose} size="xl">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader p="35px">
+              <Flex
+                mt=".25rem"
+                justifyContent="space-between"
+                alignItems="center"
+              >
+                <Flex>
+                  <Image
+                    src={`/src/assets/${activeItem?.UserImg}.svg`}
+                    w="40px"
+                    h="40px"
+                    borderRadius={100}
+                    mr={2}
+                    alt="Usuário Imagem"
+                  />
                   <Box>
-                    <Image
-                      src={` ${"/src/assets/"}` + element.UserImg + `${".svg"}`}
-                      w="24px"
-                      h="24px"
-                      borderRadius={100}
-                      mr={2}
-                      alt="Usuário Imagem"
-                    />
+                    <Text fontSize="16px" color="#303133">
+                      {activeItem?.UserName}
+                    </Text>
+                    <Text fontSize="16px" color="#515255">
+                      {activeItem?.Date}
+                    </Text>
                   </Box>
-                  <Box> titulo</Box>
-                  <Box>tags</Box>
                 </Flex>
-              </ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>tesste</ModalBody>
-
-              <ModalFooter>
-                <Button colorScheme="blue" mr={3} onClick={onClose}>
-                  Close
-                </Button>
-                <Button variant="ghost">Secondary Action</Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-        ))}
+                <Text fontSize="24px">{activeItem?.TituloProjeto}</Text>
+                <Text
+                  bg="#00000014"
+                  borderRadius="100px"
+                  fontSize="13px"
+                  p="4px"
+                >
+                  {activeItem?.Tag1}
+                </Text>
+                <Text
+                  bg="#00000014"
+                  borderRadius="100px"
+                  fontSize="13px"
+                  p="4px"
+                >
+                  {activeItem?.Tag2}
+                </Text>
+              </Flex>
+            </ModalHeader>
+            <ModalCloseButton borderRadius="100px" />
+            <ModalBody>
+              <Image w="100%" src={`/src/assets/${activeItem?.ImgCard}.png`} />
+            </ModalBody>
+            <ModalFooter>
+              <Flex flexDirection="column" w="100%" mt="3rem">
+                <Text>
+                  Temos o prazer de compartilhar com vocês uma variação do nosso
+                  primeiro recurso gratuito. É um modelo de IA. Tentamos
+                  redesenhar uma versão mais minimalista do nosso primeiro
+                  projeto.
+                </Text>
+                <Flex flexDirection="column" mt="2rem">
+                  Download
+                  <Link color="#608AE1">
+                    https://gumroad.com/products/wxCSL
+                  </Link>
+                </Flex>
+              </Flex>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </section>
     </>
   );
