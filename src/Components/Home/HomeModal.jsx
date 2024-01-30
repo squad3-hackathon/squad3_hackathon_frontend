@@ -10,6 +10,15 @@ const HomeModal = ({
   handleSaveProject,
   imagemEnviada,
   handleFileChange,
+  tituloProjeto,
+  setTituloProjeto,
+  tagsProjeto,
+  setTagsProjeto,
+  linkProjeto,
+  setLinkProjeto,
+  descricaoProjeto,
+  setDescricaoProjeto,
+  inputsInvalidos,
 }) => {
   return (
     <>
@@ -159,10 +168,43 @@ const HomeModal = ({
               borderRadius={"4px"}
               >
               
-                <Input className="titulo" type='text' placeholder="Título"></Input>
-                <Input className="tags" type='text' placeholder="Tags" mt={3}></Input>
-                <Input className="link" type='text' placeholder="Link" mt={3}></Input>
-                <Input className="descricao" type='text' placeholder="Descrição" mt={3} height={"157px"} ></Input>
+                <Input className="titulo" type='text' placeholder="Título"
+                _hover={{ borderColor: "#515255" }}
+                _focus={{ borderColor: "#2348B1" }}
+                _disabled={{ borderColor: "#0000003B", color: "#0000003B", opacity: "0.8" }}
+                value={tituloProjeto} onChange={(e) => setTituloProjeto(e.target.value)}
+                isInvalid={inputsInvalidos.tituloProjeto}
+                required
+                ></Input>
+                <Input className="tags" type='text' placeholder="Tags" mt={3}
+                _hover={{ borderColor: "#515255" }}
+                _focus={{ borderColor: "#2348B1" }}
+                _disabled={{ borderColor: "#0000003B", color: "#0000003B", opacity: "0.8" }}
+                value={tagsProjeto} onChange={(e) => setTagsProjeto(e.target.value)}
+                isInvalid={inputsInvalidos.tagsProjeto}
+                required
+                ></Input>
+                <Input className="link" type='text' placeholder="Link" mt={3}
+                _hover={{ borderColor: "#515255" }}
+                _focus={{ borderColor: "#2348B1" }}
+                _disabled={{ borderColor: "#0000003B", color: "#0000003B", opacity: "0.8" }}
+                value={linkProjeto} onChange={(e) => setLinkProjeto(e.target.value)}
+                isInvalid={inputsInvalidos.linkProjeto}
+                required
+                ></Input>
+                <Input 
+                className="descricao" 
+                type='text' 
+                placeholder="Descrição" 
+                mt={3} 
+                height={"157px"}
+                _hover={{ borderColor: "#515255" }}
+                _focus={{ borderColor: "#2348B1" }}
+                _disabled={{ borderColor: "#0000003B", color: "#0000003B", opacity: "0.8" }}
+                value={descricaoProjeto} onChange={(e) => setDescricaoProjeto(e.target.value)}
+                isInvalid={inputsInvalidos.descricaoProjeto}
+                required
+                ></Input>
               </Stack>
               
 

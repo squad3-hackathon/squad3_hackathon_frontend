@@ -23,7 +23,16 @@ const HomeBody = () => {
   const [isUploadProjectModalOpen, setUploadProjectModalOpen] = useState(false);
   const [imagemEnviada, setImagemEnviada] = useState(null);
   const [mostrarImagemNoCard, setMostrarImagemNoCard] = useState(false);
-
+  const [tituloProjeto, setTituloProjeto] = useState('');
+  const [tagsProjeto, setTagsProjeto] = useState('');
+  const [linkProjeto, setLinkProjeto] = useState('');
+  const [descricaoProjeto, setDescricaoProjeto] = useState('');
+  const [inputsInvalidos, setInputsInvalidos] = useState({
+    tituloProjeto: false,
+    tagsProjeto: false,
+    linkProjeto: false,
+    descricaoProjeto: false,
+  });
 
   const toast = useToast();
 
@@ -44,6 +53,13 @@ const HomeBody = () => {
     setUploadProjectModalOpen(false);
   };
 
+  const handleAddNewImage = () => {
+    setImagemEnviada(null);
+
+  };
+
+  
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
   
@@ -58,14 +74,44 @@ const HomeBody = () => {
   };
 
   const handleSaveProject = () => {
-    if (!imagemEnviada) {
+    if (!tituloProjeto || !tagsProjeto || !linkProjeto || !descricaoProjeto) {
       toast({
-        title: "Selecione um arquivo antes de salvar.",
+        title: "Preencha todos os campos antes de salvar",
         status: "error",
         duration: 5000,
         isClosable: true,
         position: "top",
       });
+    if (!imagemEnviada) {
+      toast({
+        title: "Adicione uma imagem antes de salvar",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "top",
+      });
+    }
+    const invalidos = {};
+
+    if (!tituloProjeto.trim()) {
+      invalidos.tituloProjeto = true;
+    }
+
+    if (!tagsProjeto.trim()) {
+      invalidos.tagsProjeto = true;
+    }
+
+    if (!linkProjeto.trim()) {
+      invalidos.linkProjeto = true;
+    }
+
+    if (!descricaoProjeto.trim()) {
+      invalidos.descricaoProjeto = true;
+    }
+
+    setInputsInvalidos(invalidos);
+    
+      
       return;
     }
 
@@ -148,15 +194,17 @@ const HomeBody = () => {
       </Button>
       <Link>
           {mostrarImagemNoCard && imagemEnviada ? (
-                  <Image 
-                  src={imagemEnviada}
-                  position="absolute"
-                  top="400px"
-                  left="60px"
-                  width="389px"
-                  height="258px"
-                  borderRadius="4px"
-                  />
+                  <>
+                    <Image 
+                    src={imagemEnviada}
+                    position="absolute"
+                    top="400px"
+                    left="60px"
+                    width="389px"
+                    height="258px"
+                    borderRadius="4px"
+                    />
+                  </>
                 ) : (
                   <Card
                   position="absolute"
@@ -220,6 +268,16 @@ const HomeBody = () => {
         imagemEnviada={imagemEnviada}
         mostrarImagemNoCard={mostrarImagemNoCard}
         setMostrarImagemNoCard={setMostrarImagemNoCard}
+        tituloProjeto={tituloProjeto}
+        setTituloProjeto={setTituloProjeto}
+        tagsProjeto={tagsProjeto}
+        setTagsProjeto={setTagsProjeto}
+        linkProjeto={linkProjeto}
+        setLinkProjeto={setLinkProjeto}
+        descricaoProjeto={descricaoProjeto}
+        setDescricaoProjeto={setDescricaoProjeto}
+        inputsInvalidos={inputsInvalidos}
+
       />
       
     </>
