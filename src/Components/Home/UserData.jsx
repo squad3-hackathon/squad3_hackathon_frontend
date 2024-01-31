@@ -1,7 +1,5 @@
 import React from "react";
 import { Text } from "@chakra-ui/react";
-import UserName from "./UserName";
-import FotoPerfil from "../../assets/foto_perfil.png";
 
 const UserData = () => {
   const dataAtual = new Date();
@@ -20,7 +18,7 @@ const UserData = () => {
     opacity={0.8}
     mt={1}
     >
-      <UserName nome={nomeUsuario} imagemSrc={FotoPerfil} /> {nomeUsuario} &nbsp;•&nbsp; {dataFormatada}
+      {nomeUsuario} &nbsp;•&nbsp; {dataFormatada}
     </Text>
     </>
   );
