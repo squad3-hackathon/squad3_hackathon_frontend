@@ -1,0 +1,30 @@
+.alertSucess {
+  width: 288px;
+  height: 40px;
+  display: flex;
+  margin-top: 3rem;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 6px 16px;
+  text-align: center;
+  border-radius: 4px;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.15px;
+  background-color: #2e7d32;
+  animation: fadeAnimation 1s linear 0s 1 normal forwards;
+}
+
+@keyframes fadeAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
