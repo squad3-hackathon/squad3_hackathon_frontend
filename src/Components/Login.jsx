@@ -28,17 +28,10 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const nomeValue = nome.value;
-    const sobrenomeValue = sobrenome.value;
     const emailValue = email.value;
     const passwordValue = password.value;
 
-    if (
-      nome.validate() &&
-      sobrenome.validate() &&
-      email.validate() &&
-      password.validate()
-    ) {
+    if (email.validate() && password.validate()) {
       console.log("tudo certo!");
       // userLogin(nomeValue, sobrenomeValue, emailValue, passwordValue);
     } else {
@@ -56,8 +49,13 @@ const Login = () => {
       </header>
       <Flex align="center" justifyContent="center" alignItems="center">
         <section>
-          <Box w="40vw" h="100vh" display={{ base: "none", md: "block" }}>
-            <Img src={LoginImg} alt="imagem login" w="83%" />
+          <Box
+            w="40vw"
+            h="100vh"
+            display={{ base: "none", md: "flex" }}
+            justifyContent="left"
+          >
+            <Img src={LoginImg} alt="imagem login" w="83%" h="100%" />
           </Box>
         </section>
         <section>
@@ -94,7 +92,6 @@ const Login = () => {
                     legend="Password"
                     name="password"
                     type={show ? "text" : "password"}
-                    placeholder="Enter password"
                     errorText={password.error}
                     {...password}
                   />
@@ -115,6 +112,8 @@ const Login = () => {
                 color="#818388"
                 as={ReactRouterLink}
                 to="/register"
+                _hover={{ color: "#303133", fontWeight: "500" }}
+                style={{ textDecoration: "none" }}
               >
                 Cadastre-se
               </ChakraLink>

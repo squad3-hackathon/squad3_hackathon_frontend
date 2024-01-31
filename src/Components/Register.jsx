@@ -69,7 +69,7 @@ const Register = () => {
       <Flex align="center" justifyContent="center" alignItems="center">
         <section>
           <Box w="40vw" h="100vh" display={{ base: "none", md: "block" }}>
-            <Img src={RegisterImg} alt="imagem login" w="83%" />
+            <Img src={RegisterImg} alt="imagem login" w="83%" h="100vh" />
           </Box>
         </section>
         <section>
@@ -128,7 +128,6 @@ const Register = () => {
                     legend="Password"
                     name="password"
                     type={show ? "text" : "password"}
-                    placeholder="Enter password"
                     errorText={password.error}
                     {...password}
                   />

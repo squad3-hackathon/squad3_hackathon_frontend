@@ -11,8 +11,9 @@ import {
   Text,
   Grid,
   GridItem,
+  Input,
 } from "@chakra-ui/react";
-import Input from "../../Foms/Input";
+
 import CardsModal from "../../Foms/CardsModal";
 import { Helmet } from "react-helmet";
 import Navbar from "../../Foms/Navbar";
@@ -59,9 +60,9 @@ const HomeDescobrir = () => {
               m={{ base: "-3rem 0 2.5rem 2rem", md: "7rem 0 2.5rem 2rem" }}
             >
               <Input
-                id="Buscar"
-                type="text"
-                name="buscar tags"
+                _hover={{ border: "1px solid #000" }}
+                cursor="pointer"
+                size="lg"
                 placeholder="Buscar Tags"
               />
             </Box>

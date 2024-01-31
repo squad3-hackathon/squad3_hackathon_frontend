@@ -25,6 +25,10 @@
   transition: 0.1s;
 }
 
+.fieldset:focus {
+  border: 2px solid #2348b1;
+}
+
 .error {
   color: #f31;
   font-size: 12px;

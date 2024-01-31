@@ -188,16 +188,14 @@ const CardsModal = () => {
         </ModalContent>
       </Modal>
       <Button
-      bordeRadius= "var(--borderRadius, 4px)"
-      background= "var(--Color-Brand-Secundria-Secondary-100, #F52)"
-      boxShadow= "0px 3px 1px -2px rgba(0, 0, 0, 0.20), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)"  
-      _hover={{ bg: "#CC4400" }}
-      ml={"730px"}
-      mt={"50px"}
+        bordeRadius="var(--borderRadius, 4px)"
+        background="var(--Color-Brand-Secundria-Secondary-100, #F52)"
+        boxShadow="0px 3px 1px -2px rgba(0, 0, 0, 0.20), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)"
+        _hover={{ bg: "#CC4400" }}
+        ml={"730px"}
+        mt={"50px"}
       >
-        <Text 
-        color={"#FCFDFF"}
-        >Ver mais</Text>
+        <Text color={"#FCFDFF"}>Ver mais</Text>
       </Button>
     </section>
   );

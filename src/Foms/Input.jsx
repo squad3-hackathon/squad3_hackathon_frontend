@@ -11,6 +11,7 @@ const Input = ({
   error,
   legend,
   isRequired,
+  placeholder,
 }) => {
   return (
     <>
@@ -28,6 +29,7 @@ const Input = ({
           value={value}
           onBlur={onBlur}
           onChange={onChange}
+          placeholder={placeholder}
           className={`${styles.input} `}
         />
         {fieldset}
