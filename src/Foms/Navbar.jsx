@@ -22,10 +22,11 @@ import {
   PopoverCloseButton,
   PopoverAnchor,
 } from "@chakra-ui/react";
-import LogoOrange from "../../assets/logo_orange.png";
-import FotoPerfil from "../../assets/foto_perfil.png";
-import LogoutFilled from "../../assets/LogoutFilled.svg";
+import LogoOrange from "../assets/logo_orange.png";
+import FotoPerfil from "../assets/foto_perfil.png";
+import LogoutFilled from "../assets/LogoutFilled.svg";
 import { Link as RouterLink } from "react-router-dom";
+
 
 import {
   HamburgerIcon,
