@@ -5,11 +5,12 @@ import {
   Img,
   Text,
   Grid,
+  Link,
   GridItem,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { ViewIcon, ViewOffIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import Input from "../Foms/Input";
 import RegisterImg from "../assets/img_cadastro.png";
 import Button from "../Foms/ButtonRegister";
@@ -17,6 +18,7 @@ import useForm from "../Hooks/useForms";
 import { Helmet } from "react-helmet";
 import AlertSuccess from "../Foms/AlertSucess";
 import AlertWarning from "../Foms/AlertWarning";
+import BackButton from "../Foms/BackButton";
 
 const Register = () => {
   /* Show Alerts */
@@ -69,7 +71,7 @@ const Register = () => {
       <Flex align="center" justifyContent="center" alignItems="center">
         <section>
           <Box w="40vw" h="100vh" display={{ base: "none", md: "block" }}>
-            <Img src={RegisterImg} alt="imagem login" w="83%" h="100vh" />
+            <Img src={RegisterImg} alt="imagem login" />
           </Box>
         </section>
         <section>
@@ -77,8 +79,15 @@ const Register = () => {
             {showSuccess && <AlertSuccess />}
             {showWarning && <AlertWarning />}
           </Box>
+          <Box display="flex" justifyContent="flex-end" w="80%">
+            <Link href="/">
+              <BackButton>
+                <ChevronLeftIcon boxSize={8} />
+              </BackButton>
+            </Link>
+          </Box>
           <Box
-            w={{ base: "100vw", md: "60vw" }}
+            w={{ base: "100vw", md: "58vw" }}
             h="100vh"
             pt={{ base: "50%", md: "20%" }}
             display="flex"

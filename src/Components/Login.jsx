@@ -52,15 +52,14 @@ const Login = () => {
           <Box
             w="40vw"
             h="100vh"
-            display={{ base: "none", md: "flex" }}
-            justifyContent="left"
+            display={{ base: "none", md: "inline-block" }}
           >
-            <Img src={LoginImg} alt="imagem login" w="83%" h="100%" />
+            <Img src={LoginImg} alt="imagem login" />
           </Box>
         </section>
         <section>
           <Box
-            w={{ base: "100vw", md: "60vw" }}
+            w={{ base: "100vw", md: "58vw" }}
             h="100vh"
             pt={{ base: "50%", md: "20%" }}
             display="flex"
