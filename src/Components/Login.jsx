@@ -4,6 +4,7 @@ import {
   Flex,
   Img,
   Text,
+  Link,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
@@ -12,9 +13,13 @@ import Input from "../Foms/Input";
 import LoginImg from "../assets/img_login.png";
 import Button from "../Foms/ButtonRegister";
 import useForm from "../Hooks/useForms";
+import { useUser } from "../Hooks/useContext";
 import { Helmet } from "react-helmet";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Link as ChakraLink } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   /*Show Password  */
@@ -22,21 +27,44 @@ const Login = () => {
   const handleClick = () => setShow(!show);
 
   /*Submit Form */
-  const email = useForm("email");
+  const emailForms = useForm("email");
   const password = useForm("password");
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const emailValue = email.value;
+    const emailValue = emailForms.value;
     const passwordValue = password.value;
 
-    if (email.validate() && password.validate()) {
+    if (emailForms.validate() && password.validate()) {
       console.log("tudo certo!");
-      // userLogin(nomeValue, sobrenomeValue, emailValue, passwordValue);
     } else {
       console.log("erro!");
     }
+  };
+
+  /*Google Response */
+  const { setName, setEmail, setIsLoggedIn } = useUser();
+  const navigate = useNavigate();
+
+  const responseSuccess = (credentialResponse) => {
+    try {
+      var decoded = jwtDecode(credentialResponse.credential);
+      console.log(decoded);
+
+      const { name, email } = decoded;
+      setName(name);
+      setEmail(email);
+      setIsLoggedIn(true);
+
+      navigate("/home");
+    } catch (error) {
+      console.error("Error decoding token:", error);
+    }
+  };
+
+  const responseError = () => {
+    console.log("Login Failed");
   };
 
   return (
@@ -69,6 +97,14 @@ const Login = () => {
               <Text fontSize={[null, "1.5rem", "3rem"]} textAlign="center">
                 Entre no Orange Portfólio
               </Text>
+              <Flex justifyContent="center" m="2rem 0 0 2rem">
+                <GoogleOAuthProvider clientId="20634376901-4o5q9as307dkeb86hva3s7gegrsnbhv1.apps.googleusercontent.com">
+                  <GoogleLogin
+                    onSuccess={responseSuccess}
+                    onError={responseError}
+                  />
+                </GoogleOAuthProvider>
+              </Flex>
               <Text
                 color="#515255"
                 pt="2rem"
@@ -82,8 +118,8 @@ const Login = () => {
                   legend="Email address"
                   type="text"
                   name="email"
-                  errorText={email.error}
-                  {...email}
+                  errorText={emailForms.error}
+                  {...emailForms}
                 />
                 <InputGroup display="flex" flexWrap="wrap" flexDir="row">
                   <Input

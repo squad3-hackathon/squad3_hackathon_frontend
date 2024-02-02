@@ -10,7 +10,7 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import { ViewIcon, ViewOffIcon, ChevronLeftIcon } from "@chakra-ui/icons";
+import { ViewIcon, ViewOffIcon, ArrowBackIcon } from "@chakra-ui/icons";
 import Input from "../Foms/Input";
 import RegisterImg from "../assets/img_cadastro.png";
 import Button from "../Foms/ButtonRegister";
@@ -82,7 +82,7 @@ const Register = () => {
           <Box display="flex" justifyContent="flex-end" w="80%">
             <Link href="/">
               <BackButton>
-                <ChevronLeftIcon boxSize={8} />
+                <ArrowBackIcon boxSize={8} />
               </BackButton>
             </Link>
           </Box>
