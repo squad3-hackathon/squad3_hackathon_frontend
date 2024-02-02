@@ -79,7 +79,7 @@ const Register = () => {
             {showSuccess && <AlertSuccess />}
             {showWarning && <AlertWarning />}
           </Box>
-          <Box display="flex" justifyContent="flex-end" w="80%">
+          <Box display="flex" justifyContent="flex-end" w="80%" mt="3rem">
             <Link href="/">
               <BackButton>
                 <ArrowBackIcon boxSize={8} />

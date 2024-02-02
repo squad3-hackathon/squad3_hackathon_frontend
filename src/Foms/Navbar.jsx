@@ -27,7 +27,6 @@ import FotoPerfil from "../assets/foto_perfil.png";
 import LogoutFilled from "../assets/LogoutFilled.svg";
 import { Link as RouterLink } from "react-router-dom";
 
-
 import {
   HamburgerIcon,
   CloseIcon,
@@ -83,10 +82,15 @@ const Navbar = () => {
                       >
                         Descobrir
                       </MenuItem>
-                      <MenuItem _hover={{ bg: "#FFEECC" }} alignItems="center">
-                        <Image src={LogoutFilled} boxSize={5} mr={3} />
-                        Sair
-                      </MenuItem>
+                      <RouterLink to="/" style={{ textDecoration: "none" }}>
+                        <MenuItem
+                          _hover={{ bg: "#FFEECC" }}
+                          alignItems="center"
+                        >
+                          <Image src={LogoutFilled} boxSize={5} mr={3} />
+                          Sair
+                        </MenuItem>
+                      </RouterLink>
                     </MenuList>
                   </>
                 )}
@@ -94,30 +98,30 @@ const Navbar = () => {
             </Show>
             <Image src={LogoOrange} alt="Logo" mr="6.25rem" />
             <Hide below="md">
-            <Box>
-              {/* linkinho para diretorio */}
-              <RouterLink to="/home" style={{ textDecoration: "none" }}>
-                <Box
-                  color="#FCFDFF"
-                  fontSize={20}
-                  fontFamily="Roboto"
-                  _hover={{ color: "#FF5522" }}
-                  cursor="pointer"
-                >
-                  Meus projetos
-                </Box>
-              </RouterLink>
-            </Box>
+              <Box>
+                {/* linkinho para diretorio */}
+                <RouterLink to="/home" style={{ textDecoration: "none" }}>
+                  <Box
+                    color="#FCFDFF"
+                    fontSize={20}
+                    fontFamily="Roboto"
+                    _hover={{ color: "#FF5522" }}
+                    cursor="pointer"
+                  >
+                    Meus projetos
+                  </Box>
+                </RouterLink>
+              </Box>
               <Box>
                 <RouterLink to="/discover" style={{ textDecoration: "none" }}>
                   <Box
-                  href="#"
-                  color="white"
-                  mx={6}
-                  fontSize={20}
-                  fontFamily="Roboto"
-                  _hover={{ color: "#FF5522" }}
-                  cursor="pointer"
+                    href="#"
+                    color="white"
+                    mx={6}
+                    fontSize={20}
+                    fontFamily="Roboto"
+                    _hover={{ color: "#FF5522" }}
+                    cursor="pointer"
                   >
                     Descobrir
                   </Box>
@@ -128,7 +132,28 @@ const Navbar = () => {
         </Box>
         <Box w="50%">
           <Flex alignItems="center" justifyContent="flex-end">
-            <Avatar name="Camila Soares" src={FotoPerfil} />
+            <Menu>
+              <MenuButton>
+                <Avatar name="Camila Soares" src={FotoPerfil} />
+              </MenuButton>
+              <MenuList
+                color="#000000DE"
+                mt={4}
+                ml={-5}
+                fontFamily="Roboto"
+                fontSize={14}
+              >
+                <RouterLink to="/profile" style={{ textDecoration: "none" }}>
+                  <MenuItem _hover={{ bg: "#FFEECC" }}>Editar Perfil</MenuItem>
+                </RouterLink>
+                <RouterLink to="/" style={{ textDecoration: "none" }}>
+                  <MenuItem _hover={{ bg: "#FFEECC" }} alignItems="center">
+                    <Image src={LogoutFilled} boxSize={5} mr={3} />
+                    Sair
+                  </MenuItem>
+                </RouterLink>
+              </MenuList>
+            </Menu>
             <Menu>
               <MenuButton>
                 <BellIcon boxSize={8} ml={7} _hover={{ color: "#FF5522" }} />

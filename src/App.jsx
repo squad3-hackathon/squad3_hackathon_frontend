@@ -7,20 +7,21 @@ import Login from "./Components/Login";
 import Home from "./Components/Home/Home";
 import Register from "./Components/Register";
 import HomeDiscover from "./Components/Home/HomeDescobrir";
+import EditPerfil from "./Components/Home/EditPerfil";
+import NotFound from "./Components/NotFound";
 
 const App = () => {
   return (
     <ChakraProvider>
       <UserProvider>
-        {/* Mover UserProvider para fora de Routes */}
         <BrowserRouter>
           <Routes>
-            {/* Alterar caminho da página de login */}
             <Route path="/" element={<Login />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/discover" element={<HomeDiscover />} />
-            <Route path="/register" element={<Register />} />
-            {/* <Route path="*" element={<Pagina404 />} />  alterar depois*/}
+            <Route path="home/*" element={<Home />} />
+            <Route path="discover/*" element={<HomeDiscover />} />
+            <Route path="register/*" element={<Register />} />
+            <Route path="profile/*" element={<EditPerfil />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </UserProvider>

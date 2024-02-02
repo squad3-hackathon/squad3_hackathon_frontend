@@ -1,19 +1,5 @@
 import React from "react";
-import {
-  ChakraProvider,
-  Flex,
-  Box,
-  Image,
-  Link,
-  Wrap,
-  WrapItem,
-  Avatar,
-  Text,
-  Grid,
-  GridItem,
-  Input,
-} from "@chakra-ui/react";
-
+import { Box, Text, Input, ChakraProvider } from "@chakra-ui/react";
 import CardsModal from "../../Foms/CardsModal";
 import { Helmet } from "react-helmet";
 import Navbar from "../../Foms/Navbar";
@@ -60,10 +46,11 @@ const HomeDescobrir = () => {
               m={{ base: "-3rem 0 2.5rem 2rem", md: "7rem 0 2.5rem 2rem" }}
             >
               <Input
-                _hover={{ border: "1px solid #000" }}
                 cursor="pointer"
                 size="lg"
                 placeholder="Buscar Tags"
+                _hover={{ borderColor: "#515255" }}
+                _focus={{ borderColor: "#2348B1" }}
               />
             </Box>
             <Box
