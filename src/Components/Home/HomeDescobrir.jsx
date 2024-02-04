@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Text, Input, ChakraProvider } from "@chakra-ui/react";
-import CardsModal from "../../Foms/CardsModal";
 import { Helmet } from "react-helmet";
 import Navbar from "../../Foms/Navbar";
+import BuscarProjetos from "../../Foms/BuscarProjetos.jsx";
 
 const HomeDescobrir = () => {
   return (
@@ -42,23 +42,11 @@ const HomeDescobrir = () => {
 
           <section>
             <Box
-              w={{ base: "85vw", md: "50%" }}
-              m={{ base: "-3rem 0 2.5rem 2rem", md: "7rem 0 2.5rem 2rem" }}
-            >
-              <Input
-                cursor="pointer"
-                size="lg"
-                placeholder="Buscar Tags"
-                _hover={{ borderColor: "#515255" }}
-                _focus={{ borderColor: "#2348B1" }}
-              />
-            </Box>
-            <Box
               display={{ base: "flex", md: "inline" }}
               alignItems="colum"
               justifyContent="center"
             >
-              <CardsModal />
+              <BuscarProjetos />
             </Box>
           </section>
         </article>
