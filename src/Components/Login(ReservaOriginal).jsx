@@ -20,7 +20,6 @@ import { Link as ChakraLink } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import axios from "./axios";
 
 const Login = () => {
   /*Show Password  */
@@ -30,9 +29,8 @@ const Login = () => {
   /*Submit Form */
   const emailForms = useForm("email");
   const password = useForm("password");
-  const LOGIN_URL = "/user/login";
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const emailValue = emailForms.value;
@@ -42,21 +40,6 @@ const Login = () => {
       console.log("tudo certo!");
     } else {
       console.log("erro!");
-    }
-
-    try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ email: emailValue, password: passwordValue }),
-        {
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
-      console.log(response.data);
-      console.log(response.token);
-      console.log(JSON.stringify(response));
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -148,7 +131,7 @@ const Login = () => {
                     {...password}
                   />
                   <InputRightElement width="2rem" m="2.5rem 1rem">
-                    <button type="button" onClick={handleClick}>
+                    <button onClick={handleClick}>
                       {show ? (
                         <ViewIcon w={6} h={6} color="#323232" />
                       ) : (
