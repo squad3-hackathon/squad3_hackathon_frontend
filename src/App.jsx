@@ -9,6 +9,7 @@ import Register from "./Components/Register";
 import HomeDiscover from "./Components/Home/HomeDescobrir";
 import EditPerfil from "./Components/Home/EditPerfil";
 import NotFound from "./Components/NotFound";
+import HomeInicio from "./Components/Home/HomeInicio";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="register/*" element={<Register />} />
             <Route path="profile/*" element={<EditPerfil />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/home" element={<HomeInicio />} />
           </Routes>
         </BrowserRouter>
       </UserProvider>
