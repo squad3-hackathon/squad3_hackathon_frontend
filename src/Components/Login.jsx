@@ -38,6 +38,7 @@ const Login = () => {
     const emailValue = emailForms.value;
     const passwordValue = password.value;
 
+    //call api delicinha-back-end
     if (emailForms.validate() && password.validate()) {
       console.log("tudo certo!");
     } else {
@@ -55,6 +56,7 @@ const Login = () => {
       console.log(response.data);
       console.log(response.token);
       console.log(JSON.stringify(response));
+      navigate("/home");
     } catch (error) {
       console.error(error);
     }

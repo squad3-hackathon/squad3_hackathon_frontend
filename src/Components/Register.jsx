@@ -19,7 +19,8 @@ import { Helmet } from "react-helmet";
 import AlertSuccess from "../Foms/AlertSucess";
 import AlertWarning from "../Foms/AlertWarning";
 import BackButton from "../Foms/BackButton";
-
+import axios from "./axios";
+const REGISTER_URL = "/user/register";
 const Register = () => {
   /* Show Alerts */
   const [showSuccess, setShowSuccess] = useState(false);
@@ -35,7 +36,7 @@ const Register = () => {
   const nome = useForm();
   const sobrenome = useForm();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const nomeValue = nome.value;
@@ -57,6 +58,21 @@ const Register = () => {
       console.log("erro!");
       setShowSuccess(false);
       setShowWarning(true);
+    }
+    try {
+      const response = await axios.post(
+        REGISTER_URL,
+        JSON.stringify({ name: nomeValue, lastName: sobrenomeValue, email: emailValue, password: passwordValue }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+      console.log(response.data);
+      console.log(JSON.stringify(response));
+
+      navigate("/");
+    } catch (error) {
+      console.error(error);
     }
   };
 
