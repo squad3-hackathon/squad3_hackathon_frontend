@@ -22,9 +22,14 @@ import Navbar from "../../Foms/Navbar";
 import FotoPerfil from "../../assets/foto_perfil.png";
 import BuscarProjetosUser from "../../Foms/BuscarProjetosUser";
 import BottomModalAddProject from "../../Foms/BottomModalAddProject";
-
+import { useAuth } from '../../Hooks/AuthContext.jsx';
+import { Navigate } from "react-router-dom";
 
 const HomeInicio = () => {
+  const { isLoggedIn } = useAuth();
+  if (!isLoggedIn) {
+    return <Navigate to="/" />;
+  }
   return (
     <>
       <ChakraProvider>

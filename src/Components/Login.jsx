@@ -21,11 +21,13 @@ import { useNavigate } from "react-router-dom";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import axios from "./axios";
+import { useAuth } from '../Hooks/AuthContext.jsx';
 
 const Login = () => {
   /*Show Password  */
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+  const { login } = useAuth();
 
   /*Submit Form */
   const emailForms = useForm("email");
@@ -53,6 +55,11 @@ const Login = () => {
           headers: { 'Content-Type': 'application/json' },
         }
       );
+      login({
+        name: response.data.name,  
+        email: response.data.email,
+
+      });
       console.log(response.data);
       console.log(response.token);
       console.log(JSON.stringify(response));

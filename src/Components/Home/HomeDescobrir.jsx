@@ -1,10 +1,16 @@
 import React from "react";
-import { Box, Text, Input, ChakraProvider } from "@chakra-ui/react";
+import { Box, Text, Input, ChakraProvider,} from "@chakra-ui/react";
 import { Helmet } from "react-helmet";
 import Navbar from "../../Foms/Navbar";
 import BuscarProjetos from "../../Foms/BuscarProjetos.jsx";
+import { useAuth } from '../../Hooks/AuthContext.jsx';
+import { Navigate } from "react-router-dom";
 
 const HomeDescobrir = () => {
+  const { isLoggedIn } = useAuth();
+  if (!isLoggedIn) {
+    return <Navigate to="/" />;
+  }
   return (
     <>
       <ChakraProvider>
