@@ -13,26 +13,30 @@ import HomeInicio from "./Components/Home/HomeInicio";
 //import LoginTest from "./Components/Home/TestAuth";
 //import Test from "./Components/Home/meu";
 import { AuthProvider } from './Hooks/AuthContext';
+import { AuthTokenProvider } from './Hooks/AuthTokenContext';
 
 const App = () => {
   return (
     <ChakraProvider>
-      <AuthProvider>
-        <UserProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="home/*" element={<Home />} />
-              <Route path="discover/*" element={<HomeDiscover />} />
-              <Route path="register/*" element={<Register />} />
-              <Route path="profile/*" element={<EditPerfil />} />
-              {/*<Route path="test/*" element={<LoginTest />} />*/}
-              <Route path="*" element={<NotFound />} />
-              <Route path="/home" element={<HomeInicio />} />
-            </Routes>
-          </BrowserRouter>
-        </UserProvider>
-      </AuthProvider>
+      <AuthTokenProvider>
+        <AuthProvider>
+            <UserProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Login />} />
+                  <Route path="home/*" element={<Home />} />
+                  <Route path="discover/*" element={<HomeDiscover />} />
+                  <Route path="register/*" element={<Register />} />
+                  <Route path="profile/*" element={<EditPerfil />} />
+                  {/*<Route path="test/*" element={<LoginTest />} />*/}
+                  <Route path="*" element={<NotFound />} />
+                  <Route path="/home" element={<HomeInicio />} />
+                </Routes>
+              </BrowserRouter>
+            </UserProvider>
+          
+        </AuthProvider>
+      </AuthTokenProvider>
     </ChakraProvider>
   );
 };

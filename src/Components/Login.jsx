@@ -22,17 +22,19 @@ import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import axios from "./axios";
 import { useAuth } from '../Hooks/AuthContext.jsx';
+import { useAuthToken } from '../Hooks/AuthTokenContext';
 
 const Login = () => {
   /*Show Password  */
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const { login } = useAuth();
+  const { setToken } = useAuthToken();
 
   /*Submit Form */
   const emailForms = useForm("email");
   const password = useForm("password");
-  const LOGIN_URL = "http://localhost:8080/user/login";
+  const LOGIN_URL = "https://portifolio-deploy.onrender.com/user/login";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -60,9 +62,8 @@ const Login = () => {
         email: response.data.email,
 
       });
-      console.log(response.data);
-      console.log(response.token);
-      console.log(JSON.stringify(response));
+
+      setToken(response.data.token);
       navigate("/home");
     } catch (error) {
       console.error(error);

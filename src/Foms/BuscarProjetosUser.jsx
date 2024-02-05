@@ -24,7 +24,7 @@ import {
 } from "@chakra-ui/react";
 import FotoPerfil from "../assets/foto_perfil.png";
 import styles from "./CardsModal.module.css";
-
+import { useAuthToken } from '../Hooks/AuthTokenContext';
 
 const BuscarProjetos = () => {
   const [tag, setTag] = useState('');
@@ -34,6 +34,7 @@ const BuscarProjetos = () => {
   const [activeProject, setActiveProject] = useState(null);
   const [noOfProjects, setNoOfProjects] = useState(4);
   const slice = responseData ? responseData.slice(0, noOfProjects) : [];
+  const { authToken } = useAuthToken();
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const day = date.getDate();
@@ -61,8 +62,8 @@ const BuscarProjetos = () => {
       try {
         setLoading(true);
 
-        const serverUrl = 'https://portifolio-deploy.onrender.com';
-        const token = 'Bearer ADICIONE_SEU_TOKEN'; // aqui vai seu token (não excluir o Bearer)
+        const serverUrl = 'http://portifolio-deploy.onrender.com';
+        const token = `Bearer ${authToken}`; // aqui vai seu token (não excluir o Bearer)
 
         const response = await fetch(
           `${serverUrl}/project/tag?tags=${encodeURIComponent(tag)}&allUsers=false`,
@@ -93,18 +94,18 @@ const BuscarProjetos = () => {
     }, 500);
 
     return () => clearTimeout(debounceTimer);
-  }, [tag]);
+  }, [tag, authToken]);
 
-  //puxar todos os projetos sem limite de tag
+  //puxar todos os projetos do usuário sem limite de tag
   const fetchAllProjects = async () => {
     try {
       setLoading(true);
 
       const serverUrl = 'https://portifolio-deploy.onrender.com';
-      const token = 'Bearer ADICIONE_SEU_TOKEN'; // aqui vai seu token (não excluir o Bearer)
+      const token = `Bearer ${authToken}`;; // aqui vai seu token (não excluir o Bearer)
 
       const response = await fetch(
-        `${serverUrl}/project/projects`,
+        `${serverUrl}/project/projects/user`,
         {
           method: 'GET',
           headers: {

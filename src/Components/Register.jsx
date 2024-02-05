@@ -69,8 +69,7 @@ const Register = () => {
           headers: { 'Content-Type': 'application/json' },
         }
       );
-      console.log(response.data);
-      console.log(JSON.stringify(response));
+    
 
       navigate("/");
     } catch (error) {
