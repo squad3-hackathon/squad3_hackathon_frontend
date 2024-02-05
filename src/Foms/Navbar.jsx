@@ -26,6 +26,7 @@ import LogoOrange from "../assets/logo_orange.png";
 import FotoPerfil from "../assets/foto_perfil.png";
 import LogoutFilled from "../assets/LogoutFilled.svg";
 import { Link as RouterLink } from "react-router-dom";
+import { useAuth } from '../Hooks/AuthContext';
 
 import {
   HamburgerIcon,
@@ -35,6 +36,14 @@ import {
 } from "@chakra-ui/icons";
 
 const Navbar = () => {
+
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    //isso vai no botao de sair
+    logout();
+  };
+
   return (
     <nav>
       <Flex
@@ -82,15 +91,11 @@ const Navbar = () => {
                       >
                         Descobrir
                       </MenuItem>
-                      <RouterLink to="/" style={{ textDecoration: "none" }}>
-                        <MenuItem
-                          _hover={{ bg: "#FFEECC" }}
-                          alignItems="center"
-                        >
-                          <Image src={LogoutFilled} boxSize={5} mr={3} />
-                          Sair
-                        </MenuItem>
-                      </RouterLink>
+                      {/* aqui dar o famoso sair, "e ele, não volta mais?" */}
+                      <MenuItem _hover={{ bg: "#FFEECC" }} alignItems="center" onClick={handleLogout}>
+                        <Image src={LogoutFilled} boxSize={5} mr={3} />
+                        Sair
+                      </MenuItem>
                     </MenuList>
                   </>
                 )}
@@ -146,12 +151,10 @@ const Navbar = () => {
                 <RouterLink to="/profile" style={{ textDecoration: "none" }}>
                   <MenuItem _hover={{ bg: "#FFEECC" }}>Editar Perfil</MenuItem>
                 </RouterLink>
-                <RouterLink to="/" style={{ textDecoration: "none" }}>
-                  <MenuItem _hover={{ bg: "#FFEECC" }} alignItems="center">
+                  <MenuItem _hover={{ bg: "#FFEECC" }} alignItems="center" onClick={handleLogout}>
                     <Image src={LogoutFilled} boxSize={5} mr={3} />
                     Sair
                   </MenuItem>
-                </RouterLink>
               </MenuList>
             </Menu>
             <Menu>
