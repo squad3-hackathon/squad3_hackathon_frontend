@@ -32,7 +32,7 @@ const Login = () => {
   /*Submit Form */
   const emailForms = useForm("email");
   const password = useForm("password");
-  const LOGIN_URL = "/user/login";
+  const LOGIN_URL = "http://localhost:8080/user/login";
 
   const handleSubmit = async (event) => {
     event.preventDefault();

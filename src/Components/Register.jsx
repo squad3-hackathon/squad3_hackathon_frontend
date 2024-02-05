@@ -20,21 +20,22 @@ import AlertSuccess from "../Foms/AlertSucess";
 import AlertWarning from "../Foms/AlertWarning";
 import BackButton from "../Foms/BackButton";
 import axios from "./axios";
-const REGISTER_URL = "/user/register";
+import { useNavigate } from "react-router-dom";
+
 const Register = () => {
   /* Show Alerts */
   const [showSuccess, setShowSuccess] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
-
+  const REGISTER_URL = "/user/register";
   /* Show Password */
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
-
   /* Submit Form */
+  const navigate = useNavigate();
   const email = useForm("email");
   const password = useForm("password");
-  const nome = useForm();
-  const sobrenome = useForm();
+  const nome = useForm("name");
+  const sobrenome = useForm("lastName");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,6 +44,7 @@ const Register = () => {
     const sobrenomeValue = sobrenome.value;
     const emailValue = email.value;
     const passwordValue = password.value;
+   
 
     if (
       nome.validate() &&
@@ -157,7 +159,7 @@ const Register = () => {
                     {...password}
                   />
                   <InputRightElement width="2rem" m="2.5rem 1rem">
-                    <button onClick={handleClick}>
+                    <button type="button" onClick={handleClick}>
                       {show ? (
                         <ViewIcon w={6} h={6} color="#323232" />
                       ) : (
