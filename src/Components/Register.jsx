@@ -26,7 +26,7 @@ const Register = () => {
   /* Show Alerts */
   const [showSuccess, setShowSuccess] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
-  const REGISTER_URL = "http://portifolio-deploy.onrender.com/user/register";
+  const REGISTER_URL = "https://portifolio-deploy.onrender.com/user/register";
   /* Show Password */
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
