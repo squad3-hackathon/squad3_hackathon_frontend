@@ -1,0 +1,40 @@
+.input {
+  width: 100%;
+  height: auto;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.input:focus,
+.input:hover {
+  outline: none;
+}
+
+.fieldset {
+  width: 100%;
+  height: auto;
+  font-size: 12px;
+  border-radius: 4px;
+  margin-top: 1.5rem;
+  border: 1px solid #0000003b;
+  padding: 0.5rem 12px 1rem 12px;
+}
+
+.fieldset:hover {
+  border: 1px solid #000;
+  transition: 0.1s;
+}
+
+.fieldset:focus {
+  border: 2px solid #2348b1;
+}
+
+.error {
+  color: #f31;
+  font-size: 12px;
+  margin-top: 0.25rem;
+}
+
+.errorInput {
+  border-color: red;
+}
